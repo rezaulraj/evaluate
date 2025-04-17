@@ -1,6 +1,51 @@
 import React from "react";
+import { motion } from "framer-motion";
 import resone from "../assets/images/reason.jpg";
 const Reason = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.6,
+      },
+    },
+  };
+  const itemOneVariants = {
+    hidden: { opacity: 0, x: -50 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  const itemTwoVariants = {
+    hidden: { opacity: 0, x: 50 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.9,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  const itemThreeVariants = {
+    hidden: { opacity: 0, y: -50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.9,
+        ease: "easeOut",
+      },
+    },
+  };
   return (
     <div
       id="reason"
@@ -35,22 +80,41 @@ const Reason = () => {
           </h2>
         </div>
 
-        <div className="p-4 md:p-8 flex flex-col items-center justify-center">
-          <h3 className="text-lg md:text-2xl font-bold mb-4 text-center tracking-widest">
+        <motion.div
+          className="p-4 md:p-8 flex flex-col items-center justify-center"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+        >
+          <motion.h3
+            className="text-lg md:text-2xl font-bold mb-4 text-center tracking-widest"
+            variants={itemThreeVariants}
+          >
             歴史と実績
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-0">
-            <img src={resone} alt="reason imge" />
-            <div>
+          </motion.h3>
+          <div
+            className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-0"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+          >
+            <motion.img
+              src={resone}
+              alt="reason imge"
+              variants={itemOneVariants}
+            />
+            <motion.div variants={itemTwoVariants}>
               <p className="text-sm md:text-base">
                 昭和10年に長浜市で創業して以来、水まわりなどの小さいリフォームから住宅・店舗の設計施工、公共建築物等の大規模な建築まで、滋賀県に住む皆様のために多くのサポートをして参りました。
               </p>
               <p className="text-sm md:text-base" s>
                 長年地元のお客様と共に歩んできた歴史と実績は、何物にも代えがたいノブワークスの財産です。
               </p>
-            </div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
